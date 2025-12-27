@@ -1,41 +1,21 @@
 # realtime-websocket-server
-Studi kasus pengembangan aplikasi perangkat lunak desktop cross-platform real-time menggunakan websocket server dengan pendekatan <b>3-Tier Architecture Pattern</b> (client-tier, application-tier, data-tier) dan <b>Layered Architecture Pattern</b> (presentation layer, business logic layer, data access layer, data source layer).
+project 3-tier web socket Studi kasus: Sistem Inventaris Barang Laboratorium
 
-<h3>3-Tier Architecture Pattern + WebSocket Server</h3>
-<ol>
-  <li><b>Realtime Client-Tier (Java Swing)</b> https://github.com/fachrulpbm/realtime-client-tier-swing</li>
-    <ul>
-      <li><b>Presentation Layer</b> (MVC Pattern)</li>
-        <ul>
-          <li>model</li>
-          <li>view</li>
-          <li>controller</li>
-          <li>worker (background thread)</li>
-          <li>api</li>
-        </ul>
-    </ul>
-  <li><b>Realtime Application-Tier (PHP Native)</b> https://github.com/fachrulpbm/realtime-application-tier-php</li>
-    <ul>
-      <li><b>Business Logic Layer</b> (Service Layer Pattern)</li>
-        <ul>
-          <li>services</li>
-          <li>core/App</li>
-          <li>core/Controller</li>
-          <li>controllers</li>
-        </ul>
-      <li><b>Data Access Layer</b> (DAO Pattern)</li>
-        <ul>
-          <li>core/Model</li>
-          <li>models</li>
-          <li>config</li>
-        </ul>
-    </ul>
-  <li><b>Data-Tier (DBMS MySQL)</b> https://github.com/fachrulpbm/data-tier-mysql</li>
-    <ul>
-      <li><b>Data Source Layer</b></li>
-        <ul>
-          <li>Database Engine</li>
-        </ul>
+Ringkasan arsitektur (3-tier)
+
+Klien (Client Tier): Aplikasi desktop Java (Swing) — antarmuka pengguna dan klien HTTP/WebSocket.
+Aplikasi (Application Tier): API REST berbasis PHP — menangani operasi CRUD dan logika bisnis (project terpisah).
+WebSocket (Realtime Tier): Server Node.js menggunakan pustaka ws — mengirim notifikasi realtime ke klien.
+Data (Data Tier): MySQL / MariaDB — penyimpanan data persisten.
+Stack teknologi
+
+Aplikasi: PHP (REST API) di atas LAMP/LEMP.
+Realtime: Node.js + ws untuk komunikasi WebSocket.
+Database: MySQL atau MariaDB.
+Cara kerja
+
+Klien melakukan permintaan HTTP ke API PHP untuk operasi Create/Read/Update/Delete.
+Setelah data berubah, API (atau backend) memberi tahu server WebSocket Node.js, yang kemudian menyiarkan notifikasi ke semua klien terhubung sehingga UI bisa memuat ulang data secara realtime.
     </ul>
   <li><b>Realtime Websocket Server (Node.js + WS)</b> https://github.com/fachrulpbm/realtime-websocket-server</li>
 </ol>
